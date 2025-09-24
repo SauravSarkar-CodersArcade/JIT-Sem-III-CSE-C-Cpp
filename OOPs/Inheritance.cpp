@@ -1,6 +1,12 @@
 #include<iostream>
 using namespace std;
-class Employee {
+class AbstractEmployee {
+    // Pure Virtual Function
+    // This function will be defined logically 
+    // in the child class
+    virtual void checkPromotion() = 0;
+};
+class Employee : AbstractEmployee{
 public:
     string Name;
     int Age;
@@ -14,6 +20,14 @@ public:
         cout << "Name: " << Name << endl;
         cout << "Age: " << Age << endl;
         cout << "Company: " << Company << endl;
+    }
+    void checkPromotion(){
+        if(Age > 35){
+            cout << Name << " is promoted!!" << endl;
+        }else{
+            cout << Name << "! Better Luck Next Time!!" 
+            << endl;
+        }
     }
 };
 class Lecturer : public Employee {
@@ -47,5 +61,8 @@ int main(){
     SoftwareDeveloper s1("Ashank", 30, "Bizotic", "Python");
     s1.employeeDetails();
     s1.createApps();
+    e1.checkPromotion();
+    l1.checkPromotion();
+    s1.checkPromotion();
     return 0;
 }
